@@ -18,14 +18,14 @@ namespace Igualacion
         /// <param name="x2"></param>
         /// <param name="y2"></param>
         /// <param name="z2"></param>
-        /// <returns>float[]</returns>
-        public static float[] Resolucion2x2(int x1, int y1, int z1, int x2, int y2, int z2)
+        /// <returns>float[2]</returns>
+        public static double[] Resolucion2x2(int x1, int y1, int z1, int x2, int y2, int z2)
         {
-            float D = DeterminanteDeCoeficientes2x2(x1, y1, x2, y2);
-            float Dx = DeterminanteX2x2(z1, y1, z2, y2);
-            float Dy = DeterminanteY2x2(x1, z1, x2, z2);
+            double D = DeterminanteDeCoeficientes2x2(x1, y1, x2, y2);
+            double Dx = DeterminanteX2x2(z1, y1, z2, y2);
+            double Dy = DeterminanteY2x2(x1, z1, x2, z2);
 
-            float[] resultado = new float[2];
+            double[] resultado = new double[2];
 
             resultado[0] = Dx / D;
             resultado[1] = Dy / D;
@@ -33,25 +33,25 @@ namespace Igualacion
             return resultado;
         }
 
-        private static float DeterminanteDeCoeficientes2x2(int x1, int y1, int x2, int y2)
+        private static double DeterminanteDeCoeficientes2x2(int x1, int y1, int x2, int y2)
         {
             int izq = x1 * y2;
             int der = x2 * y1;
-            float D = izq - der;
+            double D = izq - der;
             return D;
         }
-        private static float DeterminanteX2x2(int z1, int y1, int z2, int y2)
+        private static double DeterminanteX2x2(int z1, int y1, int z2, int y2)
         {
             int izq = z1 * y2;
             int der = z2 * y1;
-            float Dx = izq - der;
+            double Dx = izq - der;
             return Dx;
         }
-        private static float DeterminanteY2x2(int x1, int z1, int x2, int z2)
+        private static double DeterminanteY2x2(int x1, int z1, int x2, int z2)
         {
             int izq = x1 * z2;
             int der = x2 * z1;
-            float Dy = izq - der;
+            double Dy = izq - der;
             return Dy;
         }
 
