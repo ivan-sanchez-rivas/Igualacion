@@ -41,6 +41,7 @@
             this.btn_calcular = new System.Windows.Forms.Button();
             this.lbl_resultadoX = new System.Windows.Forms.Label();
             this.lbl_resultadoY = new System.Windows.Forms.Label();
+            this.btn_Cramer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txt_a
@@ -149,11 +150,22 @@
             this.lbl_resultadoY.TabIndex = 14;
             this.lbl_resultadoY.Text = "label2";
             // 
+            // btn_Cramer
+            // 
+            this.btn_Cramer.Location = new System.Drawing.Point(109, 223);
+            this.btn_Cramer.Name = "btn_Cramer";
+            this.btn_Cramer.Size = new System.Drawing.Size(75, 23);
+            this.btn_Cramer.TabIndex = 15;
+            this.btn_Cramer.Text = "Cramer";
+            this.btn_Cramer.UseVisualStyleBackColor = true;
+            this.btn_Cramer.Click += new System.EventHandler(this.btn_Cramer_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(504, 316);
+            this.Controls.Add(this.btn_Cramer);
             this.Controls.Add(this.lbl_resultadoY);
             this.Controls.Add(this.lbl_resultadoX);
             this.Controls.Add(this.btn_calcular);
@@ -189,6 +201,7 @@
         private System.Windows.Forms.Button btn_calcular;
         private System.Windows.Forms.Label lbl_resultadoX;
         private System.Windows.Forms.Label lbl_resultadoY;
+        private System.Windows.Forms.Button btn_Cramer;
     }
 }
 
