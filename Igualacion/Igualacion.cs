@@ -113,7 +113,7 @@ namespace Igualacion
            }
            else
            {
-               double resultadoIzq = Ecuacion1a + Ecuacion1b - Ecuacion2a + Ecuacion2b;
+               double resultadoIzq = Ecuacion1a + Ecuacion2a - (Ecuacion1b + Ecuacion2b);
                double resultadoDer = Ecuacion1c + Ecuacion2c;
                x = resultadoDer / resultadoIzq;
                return x;
