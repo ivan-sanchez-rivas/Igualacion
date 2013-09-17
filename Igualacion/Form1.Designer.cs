@@ -253,7 +253,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Solucion de Ecuaciones 2x2";
             this.grpBox_Seleecion.ResumeLayout(false);
             this.grpBox_Resultado.ResumeLayout(false);
             this.grpBox_Resultado.PerformLayout();

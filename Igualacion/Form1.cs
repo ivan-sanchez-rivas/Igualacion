@@ -26,13 +26,67 @@ namespace Igualacion
                 int a, b, c, a1, b1, c1;
                 double[] resultado = new double[2];
 
-                a = Convert.ToInt32(txt_a.Text);
-                b = Convert.ToInt32(txt_b.Text);
-                c = Convert.ToInt32(txt_c.Text);
+                #region Conversion Numerica de TextBoxes
+                if (txt_a.Text == "-")
+                {
+                    a = -1;
+                }
+                else
+                {
+                    a = Convert.ToInt32(txt_a.Text);
 
-                a1 = Convert.ToInt32(txt_a1.Text);
-                b1 = Convert.ToInt32(txt_b1.Text);
-                c1 = Convert.ToInt32(txt_c1.Text);
+                }
+
+                if (txt_b.Text == "-")
+                {
+                    b = -1;
+                }
+                else
+                {
+                    b = Convert.ToInt32(txt_b.Text);
+
+                }
+
+                if (txt_c.Text == "-")
+                {
+                    c = -1;
+                }
+                else
+                {
+                    c = Convert.ToInt32(txt_c.Text);
+
+                }
+
+                if (txt_a1.Text == "-")
+                {
+                    a1 = -1;
+                }
+                else
+                {
+                    a1 = Convert.ToInt32(txt_a1.Text);
+
+                }
+
+                if (txt_b1.Text == "-")
+                {
+                    b1 = -1;
+                }
+                else
+                {
+                    b1 = Convert.ToInt32(txt_b1.Text);
+
+                }
+
+                if (txt_c1.Text == "-")
+                {
+                    c1 = -1;
+                }
+                else
+                {
+                    c1 = Convert.ToInt32(txt_c1.Text);
+
+                }
+#endregion
 
 
                 if (cmbBox_Metodo.SelectedIndex == 0)
