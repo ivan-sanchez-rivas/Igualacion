@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Igualacion
 {
-    //falta ponerle casos especificos
+    //ahora si ya funciona :D se que esta algo reboltojo, pero ya lo comentare mas detalladamente
     public class Sustitucion
     {
         public static double[] Sustitucion2x2(int x1, int y1, int z1, int x2, int y2, int z2)
@@ -22,13 +22,12 @@ namespace Igualacion
             double resultadoY;
 
             //las operaciones que se hacen para dejar a x sola
-            y2 = y2 * z1;
-            x1 = x1 * z1;
-            x2 = x2 * -1;
-            z2 = z2 * y1;
+            z1 = z1 * y2;//Importa el resultado de Y y lo multiplica por la equacion
+            x1 = x1 * y2;
             x2 = x2 * y1;
+            z2 = z2 * y1;
 
-            x1 = x1 + (x2*-1);
+            x1 = x1 + x2;
             z1 = (z1 * -1) + z2;
 
             resultadoX = z1 / x1;
