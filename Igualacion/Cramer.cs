@@ -32,7 +32,6 @@ namespace Igualacion
 
             return resultado;
         }
-
         private static double DeterminanteDeCoeficientes2x2(int x1, int y1, int x2, int y2)
         {
             int izq = x1 * y2;

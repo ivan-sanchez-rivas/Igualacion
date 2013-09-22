@@ -18,14 +18,19 @@ namespace Igualacion
         {
             InitializeComponent();
         }
-        Stopwatch sw = Stopwatch.StartNew();
         private void btn_calcular_Click(object sender, EventArgs e)
         {
-           
+ 
             try
             {
-                int a, b, c, a1, b1, c1;
+                int a;
+                int b;
+                int c;
+                int a1;
+                int b1;
+                int c1;
                 double[] resultado = new double[2];
+                ;
                 
 
                 #region Conversion Numerica de TextBoxes
@@ -93,35 +98,83 @@ namespace Igualacion
 
                 if (cmbBox_Metodo.SelectedIndex == 0)
                 {
-
-                    Igualacion igualacion = new Igualacion(a, b, c, a1, b1, c1);
-                    igualacion.Multiplicacion();
-                    resultado[0] = igualacion.EncontrarX();
-                    resultado[1] = igualacion.SubstitucionY();
-                    sw.Stop();
+                        Igualacion igualacion = new Igualacion(a, b, c, a1, b1, c1);
+                        igualacion.Multiplicacion();
+                        resultado[0] = igualacion.EncontrarX();
+                        resultado[1] = igualacion.SubstitucionY(); 
                 }
                 else if (cmbBox_Metodo.SelectedIndex == 1)
                 {
                     resultado = Cramer.Resolucion2x2(a, b, c, a1, b1, c1);
-                    sw.Stop();
+
                 }
                 else
                 {
                     resultado = Sustitucion.Sustitucion2x2(a, b, c, a1, b1, c1);
-                    sw.Stop();
                 }
 
                 lbl_resultadoX.Text = string.Format("{0:N4}", resultado[0]);
                 lbl_resultadoY.Text = string.Format("{0:N4}", resultado[1]);
-                long tiempo = TimeSpan.FromMilliseconds(sw.ElapsedMilliseconds).Seconds;
-                MessageBox.Show(Convert.ToString(tiempo));
-                sw.Reset();
             }
             catch
             {
                 MessageBox.Show("Hubo un error al momento de capturar los datos");
             }
 
+        }
+
+        private void btn_CalcularRandom_Click(object sender, EventArgs e)
+        {
+
+            double[] resultadoRan = new double[122];
+            Random ran = new Random();
+            int a;
+            int b;
+            int c;
+            int a1;
+            int b1;
+            int c1;      
+            double media;
+            double SumaDiferenciaCuadrados;
+            double desvest;
+            double z = 1.96;
+            double intervaloConfianzaMax;
+            double intervaloConfianzaMin;
+            if (cmbBox_Metodo.SelectedIndex == 0)
+            {
+                for (int i = 0; i <= 120; i+=2)
+                {
+                    a = ran.Next(1, 100);
+                    b = ran.Next(1, 100);
+                    c = ran.Next(1, 100);
+                    a1 = ran.Next(1, 100);
+                    b1 = ran.Next(1, 100);
+                    c1 = ran.Next(1, 100);
+
+                    Igualacion igualacion = new Igualacion(a, b, c, a1, b1, c1);
+                    igualacion.Multiplicacion();
+                    resultadoRan[i] = igualacion.EncontrarX();
+                    resultadoRan[i+1] = igualacion.SubstitucionY();
+                }
+                media = resultadoRan.Average();
+                SumaDiferenciaCuadrados = resultadoRan.Select(val => (val - media) * (val - media)).Sum();
+                desvest = Math.Sqrt(SumaDiferenciaCuadrados / resultadoRan.Length);
+                intervaloConfianzaMin = (media - z) * desvest;
+                intervaloConfianzaMax = (media + z) * desvest;
+                //El intervalo se encuentra en esa parte con una confianza de 95%
+            }
+            //else if (cmbBox_Metodo.SelectedIndex == 1)
+            //{
+            //        resultadoRan = Cramer.Resolucion2x2(a, b, c, a1, b1, c1); 
+            //    media = resultadoRan.Average();
+
+            //}
+            //else
+            //{
+            //    resultado = Sustitucion.Sustitucion2x2(a, b, c, a1, b1, c1);
+            //}
+
+       
         }
 
 

@@ -45,7 +45,7 @@
             this.grpBox_Seleecion = new System.Windows.Forms.GroupBox();
             this.grpBox_Resultado = new System.Windows.Forms.GroupBox();
             this.grpBox_Coeficientes = new System.Windows.Forms.GroupBox();
-            this.lbl_tiempo = new System.Windows.Forms.Label();
+            this.btn_CalcularRandom = new System.Windows.Forms.Button();
             this.grpBox_Seleecion.SuspendLayout();
             this.grpBox_Resultado.SuspendLayout();
             this.grpBox_Coeficientes.SuspendLayout();
@@ -155,9 +155,9 @@
             // 
             this.btn_calcular.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_calcular.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_calcular.Location = new System.Drawing.Point(183, 42);
+            this.btn_calcular.Location = new System.Drawing.Point(183, 24);
             this.btn_calcular.Name = "btn_calcular";
-            this.btn_calcular.Size = new System.Drawing.Size(90, 30);
+            this.btn_calcular.Size = new System.Drawing.Size(90, 60);
             this.btn_calcular.TabIndex = 12;
             this.btn_calcular.Text = "Calcular";
             this.btn_calcular.UseVisualStyleBackColor = true;
@@ -199,25 +199,25 @@
             // 
             // grpBox_Seleecion
             // 
+            this.grpBox_Seleecion.Controls.Add(this.btn_CalcularRandom);
             this.grpBox_Seleecion.Controls.Add(this.cmbBox_Metodo);
             this.grpBox_Seleecion.Controls.Add(this.btn_calcular);
             this.grpBox_Seleecion.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBox_Seleecion.Location = new System.Drawing.Point(12, 129);
             this.grpBox_Seleecion.Name = "grpBox_Seleecion";
-            this.grpBox_Seleecion.Size = new System.Drawing.Size(325, 90);
+            this.grpBox_Seleecion.Size = new System.Drawing.Size(397, 90);
             this.grpBox_Seleecion.TabIndex = 19;
             this.grpBox_Seleecion.TabStop = false;
             this.grpBox_Seleecion.Text = "Seleecione el Metodo";
             // 
             // grpBox_Resultado
             // 
-            this.grpBox_Resultado.Controls.Add(this.lbl_tiempo);
             this.grpBox_Resultado.Controls.Add(this.lbl_resultadoX);
             this.grpBox_Resultado.Controls.Add(this.lbl_resultadoY);
             this.grpBox_Resultado.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBox_Resultado.Location = new System.Drawing.Point(12, 225);
             this.grpBox_Resultado.Name = "grpBox_Resultado";
-            this.grpBox_Resultado.Size = new System.Drawing.Size(340, 78);
+            this.grpBox_Resultado.Size = new System.Drawing.Size(180, 78);
             this.grpBox_Resultado.TabIndex = 20;
             this.grpBox_Resultado.TabStop = false;
             this.grpBox_Resultado.Text = "Resultado";
@@ -242,22 +242,22 @@
             this.grpBox_Coeficientes.TabStop = false;
             this.grpBox_Coeficientes.Text = "Introdusca los Coeficientes";
             // 
-            // lbl_tiempo
+            // btn_CalcularRandom
             // 
-            this.lbl_tiempo.AutoSize = true;
-            this.lbl_tiempo.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tiempo.Location = new System.Drawing.Point(221, 35);
-            this.lbl_tiempo.Name = "lbl_tiempo";
-            this.lbl_tiempo.Size = new System.Drawing.Size(104, 30);
-            this.lbl_tiempo.TabIndex = 15;
-            this.lbl_tiempo.Text = "Tiempo: 0";
+            this.btn_CalcularRandom.Location = new System.Drawing.Point(279, 24);
+            this.btn_CalcularRandom.Name = "btn_CalcularRandom";
+            this.btn_CalcularRandom.Size = new System.Drawing.Size(112, 60);
+            this.btn_CalcularRandom.TabIndex = 13;
+            this.btn_CalcularRandom.Text = "Calcular Muestreo";
+            this.btn_CalcularRandom.UseVisualStyleBackColor = true;
+            this.btn_CalcularRandom.Click += new System.EventHandler(this.btn_CalcularRandom_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(421, 321);
+            this.ClientSize = new System.Drawing.Size(416, 321);
             this.Controls.Add(this.grpBox_Coeficientes);
             this.Controls.Add(this.grpBox_Resultado);
             this.Controls.Add(this.grpBox_Seleecion);
@@ -294,7 +294,7 @@
         private System.Windows.Forms.GroupBox grpBox_Seleecion;
         private System.Windows.Forms.GroupBox grpBox_Resultado;
         private System.Windows.Forms.GroupBox grpBox_Coeficientes;
-        private System.Windows.Forms.Label lbl_tiempo;
+        private System.Windows.Forms.Button btn_CalcularRandom;
     }
 }
 
