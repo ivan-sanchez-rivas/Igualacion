@@ -45,6 +45,7 @@
             this.grpBox_Seleecion = new System.Windows.Forms.GroupBox();
             this.grpBox_Resultado = new System.Windows.Forms.GroupBox();
             this.grpBox_Coeficientes = new System.Windows.Forms.GroupBox();
+            this.lbl_tiempo = new System.Windows.Forms.Label();
             this.grpBox_Seleecion.SuspendLayout();
             this.grpBox_Resultado.SuspendLayout();
             this.grpBox_Coeficientes.SuspendLayout();
@@ -166,7 +167,7 @@
             // 
             this.lbl_resultadoX.AutoSize = true;
             this.lbl_resultadoX.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_resultadoX.Location = new System.Drawing.Point(70, 35);
+            this.lbl_resultadoX.Location = new System.Drawing.Point(19, 35);
             this.lbl_resultadoX.Name = "lbl_resultadoX";
             this.lbl_resultadoX.Size = new System.Drawing.Size(62, 30);
             this.lbl_resultadoX.TabIndex = 13;
@@ -176,7 +177,7 @@
             // 
             this.lbl_resultadoY.AutoSize = true;
             this.lbl_resultadoY.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_resultadoY.Location = new System.Drawing.Point(177, 35);
+            this.lbl_resultadoY.Location = new System.Drawing.Point(109, 35);
             this.lbl_resultadoY.Name = "lbl_resultadoY";
             this.lbl_resultadoY.Size = new System.Drawing.Size(62, 30);
             this.lbl_resultadoY.TabIndex = 14;
@@ -210,12 +211,13 @@
             // 
             // grpBox_Resultado
             // 
+            this.grpBox_Resultado.Controls.Add(this.lbl_tiempo);
             this.grpBox_Resultado.Controls.Add(this.lbl_resultadoX);
             this.grpBox_Resultado.Controls.Add(this.lbl_resultadoY);
             this.grpBox_Resultado.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpBox_Resultado.Location = new System.Drawing.Point(12, 225);
             this.grpBox_Resultado.Name = "grpBox_Resultado";
-            this.grpBox_Resultado.Size = new System.Drawing.Size(325, 78);
+            this.grpBox_Resultado.Size = new System.Drawing.Size(340, 78);
             this.grpBox_Resultado.TabIndex = 20;
             this.grpBox_Resultado.TabStop = false;
             this.grpBox_Resultado.Text = "Resultado";
@@ -240,12 +242,22 @@
             this.grpBox_Coeficientes.TabStop = false;
             this.grpBox_Coeficientes.Text = "Introdusca los Coeficientes";
             // 
+            // lbl_tiempo
+            // 
+            this.lbl_tiempo.AutoSize = true;
+            this.lbl_tiempo.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_tiempo.Location = new System.Drawing.Point(221, 35);
+            this.lbl_tiempo.Name = "lbl_tiempo";
+            this.lbl_tiempo.Size = new System.Drawing.Size(104, 30);
+            this.lbl_tiempo.TabIndex = 15;
+            this.lbl_tiempo.Text = "Tiempo: 0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(349, 321);
+            this.ClientSize = new System.Drawing.Size(421, 321);
             this.Controls.Add(this.grpBox_Coeficientes);
             this.Controls.Add(this.grpBox_Resultado);
             this.Controls.Add(this.grpBox_Seleecion);
@@ -282,6 +294,7 @@
         private System.Windows.Forms.GroupBox grpBox_Seleecion;
         private System.Windows.Forms.GroupBox grpBox_Resultado;
         private System.Windows.Forms.GroupBox grpBox_Coeficientes;
+        private System.Windows.Forms.Label lbl_tiempo;
     }
 }
 

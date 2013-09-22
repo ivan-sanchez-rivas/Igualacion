@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Igualacion
 {
     public class Igualacion
     {
+        //Se declaran las variables que se van a utilizar en las dos ecuaciones.
         public double a { get; set; }
         public double b { get; set; }
         public double c { get; set; }
@@ -20,8 +22,9 @@ namespace Igualacion
        double Ecuacion1a, Ecuacion1b, Ecuacion1c;
        double Ecuacion2a, Ecuacion2b, Ecuacion2c;
        double x;
+        
 
-
+        //Se pasan los valores recibidos al constructor para empezar a hacer las operaciones
        public Igualacion(double A, double B, double C, double A1, double B1, double C1)
        {
            a = A;
@@ -32,6 +35,7 @@ namespace Igualacion
            b1 = B1;
            c1 = C1;
        }
+        //Se realiza la multiplicacion de la segunda ecuacion de "Y" con la primera y viceversa
        public void Multiplicacion()
        {
            double ib, ib1;
@@ -88,6 +92,7 @@ namespace Igualacion
                Ecuacion2c = c1 * ib;
            }
        }
+        //Se encuentra la "X" de la primera ecuacion en la cual sumamos y despues sacamos la divison del resultado que nos dio
        public double EncontrarX()
        {
            if (Ecuacion2a > 0 && Ecuacion2b > 0)
@@ -113,13 +118,14 @@ namespace Igualacion
            }
            else
            {
-               double resultadoIzq = Ecuacion1a + Ecuacion1b - Ecuacion2a + Ecuacion2b;
+               double resultadoIzq = Ecuacion1a + Ecuacion2a - (Ecuacion1b + Ecuacion2b);
                double resultadoDer = Ecuacion1c + Ecuacion2c;
                x = resultadoDer / resultadoIzq;
                return x;
            }
-         
+ 
        }
+        //Se realiza lo mismo pero con la "Y"
        public double SubstitucionY()
        {
            double resultadoIzq = a * x;

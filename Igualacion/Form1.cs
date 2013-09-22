@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Igualacion
 {
@@ -17,14 +18,15 @@ namespace Igualacion
         {
             InitializeComponent();
         }
-
+        Stopwatch sw = Stopwatch.StartNew();
         private void btn_calcular_Click(object sender, EventArgs e)
         {
-            
+           
             try
             {
                 int a, b, c, a1, b1, c1;
                 double[] resultado = new double[2];
+                
 
                 #region Conversion Numerica de TextBoxes
                 if (txt_a.Text == "-")
@@ -91,23 +93,29 @@ namespace Igualacion
 
                 if (cmbBox_Metodo.SelectedIndex == 0)
                 {
+
                     Igualacion igualacion = new Igualacion(a, b, c, a1, b1, c1);
                     igualacion.Multiplicacion();
                     resultado[0] = igualacion.EncontrarX();
                     resultado[1] = igualacion.SubstitucionY();
+                    sw.Stop();
                 }
                 else if (cmbBox_Metodo.SelectedIndex == 1)
                 {
-
                     resultado = Cramer.Resolucion2x2(a, b, c, a1, b1, c1);
+                    sw.Stop();
                 }
                 else
                 {
-                    ////MANNY's CODE HERE////
+                    resultado = Sustitucion.Sustitucion2x2(a, b, c, a1, b1, c1);
+                    sw.Stop();
                 }
 
                 lbl_resultadoX.Text = string.Format("{0:N4}", resultado[0]);
                 lbl_resultadoY.Text = string.Format("{0:N4}", resultado[1]);
+                long tiempo = TimeSpan.FromMilliseconds(sw.ElapsedMilliseconds).Seconds;
+                MessageBox.Show(Convert.ToString(tiempo));
+                sw.Reset();
             }
             catch
             {
