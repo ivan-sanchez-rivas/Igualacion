@@ -144,12 +144,12 @@ namespace Igualacion
             {
                 for (int i = 0; i <= 120; i+=2)
                 {
-                    a = ran.Next(1, 100);
-                    b = ran.Next(1, 100);
-                    c = ran.Next(1, 100);
-                    a1 = ran.Next(1, 100);
-                    b1 = ran.Next(1, 100);
-                    c1 = ran.Next(1, 100);
+                    a = ran.Next(0, 100);
+                    b = ran.Next(0, 100);
+                    c = ran.Next(0, 100);
+                    a1 = ran.Next(0, 100);
+                    b1 = ran.Next(0, 100);
+                    c1 = ran.Next(0, 100);
 
                     Igualacion igualacion = new Igualacion(a, b, c, a1, b1, c1);
                     igualacion.Multiplicacion();
@@ -157,6 +157,23 @@ namespace Igualacion
                     resultadoRan[i+1] = igualacion.SubstitucionY();
                 }
                 media = resultadoRan.Average();
+                while (double.IsNegativeInfinity(media) || double.IsPositiveInfinity(media) || double.IsNaN(media))
+                {
+                    for (int i = 0; i <= 120; i += 2)
+                    {
+                        a = ran.Next(0, 100);
+                        b = ran.Next(0, 100);
+                        c = ran.Next(0, 100);
+                        a1 = ran.Next(0, 100);
+                        b1 = ran.Next(0, 100);
+                        c1 = ran.Next(0, 100);
+
+                        Igualacion igualacion = new Igualacion(a, b, c, a1, b1, c1);
+                        igualacion.Multiplicacion();
+                        resultadoRan[i] = igualacion.EncontrarX();
+                        resultadoRan[i + 1] = igualacion.SubstitucionY();
+                    }
+                }
                 SumaDiferenciaCuadrados = resultadoRan.Select(val => (val - media) * (val - media)).Sum();
                 desvest = Math.Sqrt(SumaDiferenciaCuadrados / resultadoRan.Length);
                 intervaloConfianzaMin = (media - z) * desvest;

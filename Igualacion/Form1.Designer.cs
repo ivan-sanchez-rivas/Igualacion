@@ -240,7 +240,7 @@
             this.grpBox_Coeficientes.Size = new System.Drawing.Size(325, 109);
             this.grpBox_Coeficientes.TabIndex = 21;
             this.grpBox_Coeficientes.TabStop = false;
-            this.grpBox_Coeficientes.Text = "Introduzca los Coeficientes";
+            this.grpBox_Coeficientes.Text = "Introdusca los Coeficientes";
             // 
             // btn_CalcularRandom
             // 
