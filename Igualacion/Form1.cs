@@ -31,7 +31,7 @@ namespace Igualacion
                 int c1;
                 double[] resultado = new double[2];
                 ;
-                
+
 
                 #region Conversion Numerica de TextBoxes
                 if (txt_a.Text == "-")
@@ -93,7 +93,7 @@ namespace Igualacion
                     c1 = Convert.ToInt32(txt_c1.Text);
 
                 }
-#endregion
+                #endregion
 
 
                 if (cmbBox_Metodo.SelectedIndex == 0)
@@ -126,56 +126,43 @@ namespace Igualacion
         private void btn_CalcularRandom_Click(object sender, EventArgs e)
         {
 
-            double[] resultadoRan = new double[122];
+            double[] coeficientes = new double[720];
             Random ran = new Random();
-            int a;
-            int b;
-            int c;
-            int a1;
-            int b1;
-            int c1;      
-            double media;
-            double SumaDiferenciaCuadrados;
-            double desvest;
+            int a, b, c, a1, b1, c1;      
+            double media, SumaDiferenciaCuadrados, desvest, intervaloConfianzaMax, intervaloConfianzaMin;
             double z = 1.96;
-            double intervaloConfianzaMax;
-            double intervaloConfianzaMin;
-            if (cmbBox_Metodo.SelectedIndex == 0)
+
+            do 
             {
                 for (int i = 0; i <= 120; i+=2)
                 {
-                    a = ran.Next(0, 100);
-                    b = ran.Next(0, 100);
-                    c = ran.Next(0, 100);
-                    a1 = ran.Next(0, 100);
-                    b1 = ran.Next(0, 100);
-                    c1 = ran.Next(0, 100);
+                    a = (i * 6);
+                    b = (i * 6) + 1;
+                    c = (i * 6) + 2;
+                    a1 = (i * 6) + 3;
+                    b1 = (i * 6) + 4;
+                    c1 = (i * 6) + 5;
 
-                    Igualacion igualacion = new Igualacion(a, b, c, a1, b1, c1);
+                    coeficientes[a] = ran.Next(0, 100);
+                    coeficientes[b] = ran.Next(0, 100);
+                    coeficientes[c] = ran.Next(0, 100);
+                    coeficientes[a1] = ran.Next(0, 100);
+                    coeficientes[b1] = ran.Next(0, 100);
+                    coeficientes[c1] = ran.Next(0, 100);
+
+                    Igualacion igualacion = new Igualacion(coeficientes[a], coeficientes[b], coeficientes[c],
+                        coeficientes[a1], coeficientes[b1], coeficientes[c1]);
                     igualacion.Multiplicacion();
-                    resultadoRan[i] = igualacion.EncontrarX();
-                    resultadoRan[i+1] = igualacion.SubstitucionY();
+                    igualacion.EncontrarX();
+                    igualacion.SubstitucionY();
                 }
-                media = resultadoRan.Average();
-                while (double.IsNegativeInfinity(media) || double.IsPositiveInfinity(media) || double.IsNaN(media))
-                {
-                    for (int i = 0; i <= 120; i += 2)
-                    {
-                        a = ran.Next(0, 100);
-                        b = ran.Next(0, 100);
-                        c = ran.Next(0, 100);
-                        a1 = ran.Next(0, 100);
-                        b1 = ran.Next(0, 100);
-                        c1 = ran.Next(0, 100);
+            } while (double.IsNegativeInfinity(media) || double.IsPositiveInfinity(media) || double.IsNaN(media));
+               // media = resultadoRan.Average();
+           
 
-                        Igualacion igualacion = new Igualacion(a, b, c, a1, b1, c1);
-                        igualacion.Multiplicacion();
-                        resultadoRan[i] = igualacion.EncontrarX();
-                        resultadoRan[i + 1] = igualacion.SubstitucionY();
-                    }
-                }
-                SumaDiferenciaCuadrados = resultadoRan.Select(val => (val - media) * (val - media)).Sum();
-                desvest = Math.Sqrt(SumaDiferenciaCuadrados / resultadoRan.Length);
+
+               // SumaDiferenciaCuadrados = resultadoRan.Select(val => (val - media) * (val - media)).Sum();
+               // desvest = Math.Sqrt(SumaDiferenciaCuadrados / resultadoRan.Length);
                 intervaloConfianzaMin = (media - z) * desvest;
                 intervaloConfianzaMax = (media + z) * desvest;
                 //El intervalo se encuentra en esa parte con una confianza de 95%
