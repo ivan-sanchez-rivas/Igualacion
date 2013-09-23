@@ -11,7 +11,7 @@ namespace Igualacion
     {
         public static int[] GeneraCoeficientes()
         {
-            int[] coeficientes = new int[3000];
+            int[] coeficientes = new int[30000];
             int a, b, c, a1, b1, c1;
             Random ran = new Random();
 
@@ -25,11 +25,11 @@ namespace Igualacion
                 b1 = (i * 6) + 4;
                 c1 = (i * 6) + 5;
 
-                coeficientes[a] = ran.Next(0, 100);
-                coeficientes[b] = ran.Next(0, 100);
+                coeficientes[a] = ran.Next(1, 100);
+                coeficientes[b] = ran.Next(1, 100);
                 coeficientes[c] = ran.Next(0, 100);
-                coeficientes[a1] = ran.Next(0, 100);
-                coeficientes[b1] = ran.Next(0, 100);
+                coeficientes[a1] = ran.Next(1, 100);
+                coeficientes[b1] = ran.Next(1, 100);
                 coeficientes[c1] = ran.Next(0, 100);
 
             }
@@ -47,7 +47,7 @@ namespace Igualacion
             {
                 for (int NumeroRonda = 0; NumeroRonda < 10; NumeroRonda++)
                 {
-                    sw.Start();
+                    sw.Restart();
                     for (int i = 0; i < coeficientes.Count() / 6; i++)
                     {
 
@@ -85,7 +85,7 @@ namespace Igualacion
             {
                 for (int NumeroRonda = 0; NumeroRonda < 10; NumeroRonda++)
                 {
-                    sw.Start();
+                    sw.Restart();
                     for (int i = 0; i < coeficientes.Count() / 6; i++)
                     {
 
@@ -119,19 +119,19 @@ namespace Igualacion
             {
                 for (int NumeroRonda = 0; NumeroRonda < 10; NumeroRonda++)
                 {
-                    sw.Start();
+                    sw.Restart();
                     for (int i = 0; i < coeficientes.Count()/6 ; i++)
                     {
 
-                        int a = (i * 6);
-                        int b = (i * 6) + 1;
-                        int c = (i * 6) + 2;
-                        int a1 = (i * 6) + 3;
-                        int b1 = (i * 6) + 4;
-                        int c1 = (i * 6) + 5;
+                        int a = coeficientes[(i * 6)];
+                        int b = coeficientes[(i * 6) + 1];
+                        int c = coeficientes[(i * 6) + 2];
+                        int a1 = coeficientes[(i * 6) + 3];
+                        int b1 = coeficientes[(i * 6) + 4];
+                        int c1 = coeficientes[(i * 6) + 5];
 
-                        Sustitucion.Sustitucion2x2(coeficientes[a], coeficientes[b], coeficientes[c],
-                            coeficientes[a1], coeficientes[b1], coeficientes[c1]);
+
+                        Sustitucion.Sustitucion2x2(a, b, c, a1, b1, c1); ;
                     }
                     sw.Stop();
                     tiempo[NumeroRonda] = sw.ElapsedMilliseconds;

@@ -11,7 +11,7 @@ namespace Igualacion
     {
         public static double[] Sustitucion2x2(int x1, int y1, int z1, int x2, int y2, int z2)
         {
-            
+            double[] resultado = new double[2];
             //pasar a X del otro lado para despejar a y
             x1 = x1 * -1;
 
@@ -30,19 +30,21 @@ namespace Igualacion
 
             x1 = x1 + x2;
             z1 = (z1 * -1) + z2;
+            if (x1 == 0)
+                x1 = 0;
+            try
+            {
+                resultadoX = z1 / x1;
 
-            resultadoX = z1 / x1;
+                //ahora a substituir de vuelta
+                tempX = tempX * resultadoX;
+                tempZ = tempZ + tempX;
+                resultadoY = tempZ / tempY;
 
-            //ahora a substituir de vuelta
-            tempX = tempX * resultadoX;
-            tempZ = tempZ + tempX;
-            resultadoY = tempZ / tempY;
-
-            double[] resultado = new double[2];
-
-            resultado[0] = resultadoX;
-            resultado[1] = resultadoY;
-
+                resultado[0] = resultadoX;
+                resultado[1] = resultadoY;
+            }
+            catch { }
             return resultado;
         }
     }
