@@ -11,6 +11,7 @@ namespace Igualacion
     {
         public static double[] Sustitucion2x2(int x1, int y1, int z1, int x2, int y2, int z2)
         {
+            
             //pasar a X del otro lado para despejar a y
             x1 = x1 * -1;
 

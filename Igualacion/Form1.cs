@@ -126,60 +126,30 @@ namespace Igualacion
         private void btn_CalcularRandom_Click(object sender, EventArgs e)
         {
 
-            double[] coeficientes = new double[720];
-            Random ran = new Random();
-            int a, b, c, a1, b1, c1;      
-            double media, SumaDiferenciaCuadrados, desvest, intervaloConfianzaMax, intervaloConfianzaMin;
-            double z = 1.96;
+            int[] coeficientes = IntervalosConfianza.GeneraCoeficientes();
+            long[] tiempoIgualacion = IntervalosConfianza.CalcularTiempoIgualacion(coeficientes); ;
+            double[] IntervalosIgualacion = IntervalosConfianza.CalcularIntervalosConfianza(tiempoIgualacion);
 
-            do 
-            {
-                for (int i = 0; i <= 120; i+=2)
-                {
-                    a = (i * 6);
-                    b = (i * 6) + 1;
-                    c = (i * 6) + 2;
-                    a1 = (i * 6) + 3;
-                    b1 = (i * 6) + 4;
-                    c1 = (i * 6) + 5;
+            long[] tiempoCramer = IntervalosConfianza.CalcularTiempoCramer(coeficientes);
+            double[] IntervalosCramer = IntervalosConfianza.CalcularIntervalosConfianza(tiempoCramer);
 
-                    coeficientes[a] = ran.Next(0, 100);
-                    coeficientes[b] = ran.Next(0, 100);
-                    coeficientes[c] = ran.Next(0, 100);
-                    coeficientes[a1] = ran.Next(0, 100);
-                    coeficientes[b1] = ran.Next(0, 100);
-                    coeficientes[c1] = ran.Next(0, 100);
-
-                    Igualacion igualacion = new Igualacion(coeficientes[a], coeficientes[b], coeficientes[c],
-                        coeficientes[a1], coeficientes[b1], coeficientes[c1]);
-                    igualacion.Multiplicacion();
-                    igualacion.EncontrarX();
-                    igualacion.SubstitucionY();
-                }
-            } while (double.IsNegativeInfinity(media) || double.IsPositiveInfinity(media) || double.IsNaN(media));
-               // media = resultadoRan.Average();
-           
-
-
-               // SumaDiferenciaCuadrados = resultadoRan.Select(val => (val - media) * (val - media)).Sum();
-               // desvest = Math.Sqrt(SumaDiferenciaCuadrados / resultadoRan.Length);
-                intervaloConfianzaMin = (media - z) * desvest;
-                intervaloConfianzaMax = (media + z) * desvest;
-                //El intervalo se encuentra en esa parte con una confianza de 95%
+            long[] tiempoSustitucion = IntervalosConfianza.CalcularTiempoSustitucion(coeficientes);
+            double[] IntervalosSustitucion = IntervalosConfianza.CalcularIntervalosConfianza(tiempoSustitucion);
+            
+            MessageBox.Show(String.Format(@"Metodo: Media; IntervaloMin, IntervaloMax
+Igualacion: {0}; {1:N2},{2:N2} 
+Cramer: {3}; {4:N2}, {5:N2}
+Sustitucion: {6}; {7:N2},{8:N2}", 
+                          tiempoIgualacion.Average(), IntervalosIgualacion[0], IntervalosIgualacion[1],
+                          tiempoCramer.Average(), IntervalosCramer[0], IntervalosCramer[1],
+                          tiempoSustitucion.Average(), IntervalosSustitucion[0], IntervalosSustitucion[1]));
+                
             }
-            //else if (cmbBox_Metodo.SelectedIndex == 1)
-            //{
-            //        resultadoRan = Cramer.Resolucion2x2(a, b, c, a1, b1, c1); 
-            //    media = resultadoRan.Average();
 
-            //}
-            //else
-            //{
-            //    resultado = Sustitucion.Sustitucion2x2(a, b, c, a1, b1, c1);
-            //}
-
+        
+  
        
-        }
+        
 
 
     }
