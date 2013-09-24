@@ -9,6 +9,7 @@ namespace Igualacion
 {
     class IntervalosConfianza
     {
+        static private int  NumeroRondaMax = 50;
         public static int[] GeneraCoeficientes()
         {
             int[] coeficientes = new int[30000];
@@ -40,12 +41,12 @@ namespace Igualacion
         public static long[] CalcularTiempoIgualacion(int[] coeficientes)
         {
             Stopwatch sw = new Stopwatch();
-            long[] tiempo = new long[10];
+            long[] tiempo = new long[NumeroRondaMax];
             double media = 0;
 
             do
             {
-                for (int NumeroRonda = 0; NumeroRonda < 10; NumeroRonda++)
+                for (int NumeroRonda = 0; NumeroRonda < NumeroRondaMax; NumeroRonda++)
                 {
                     sw.Restart();
                     for (int i = 0; i < coeficientes.Count() / 6; i++)
@@ -78,12 +79,12 @@ namespace Igualacion
         public static long[] CalcularTiempoCramer(int[] coeficientes)
         {
             Stopwatch sw = new Stopwatch();
-            long[] tiempo = new long[10];
+            long[] tiempo = new long[NumeroRondaMax];
             double media = 0;
 
             do
             {
-                for (int NumeroRonda = 0; NumeroRonda < 10; NumeroRonda++)
+                for (int NumeroRonda = 0; NumeroRonda < NumeroRondaMax; NumeroRonda++)
                 {
                     sw.Restart();
                     for (int i = 0; i < coeficientes.Count() / 6; i++)
@@ -112,12 +113,12 @@ namespace Igualacion
         public static long[] CalcularTiempoSustitucion(int[] coeficientes)
         {
             Stopwatch sw = new Stopwatch();
-            long[] tiempo = new long[10];
+            long[] tiempo = new long[NumeroRondaMax];
             double media = 0;
 
             do
             {
-                for (int NumeroRonda = 0; NumeroRonda < 10; NumeroRonda++)
+                for (int NumeroRonda = 0; NumeroRonda < NumeroRondaMax; NumeroRonda++)
                 {
                     sw.Restart();
                     for (int i = 0; i < coeficientes.Count()/6 ; i++)
@@ -159,8 +160,8 @@ namespace Igualacion
             SumaDiferenciaCuadrados = tiempo.Select(val => (val - media) * (val - media)).Sum();
             desvest = Math.Sqrt(SumaDiferenciaCuadrados / tiempo.Length);
 
-            IntervalosConfianza[0] = (media - z) * desvest;
-            IntervalosConfianza[1] = (media + z) * desvest;
+            IntervalosConfianza[0] = media - z * desvest/(Math.Sqrt(tiempo.Length));
+            IntervalosConfianza[1] = media + z * desvest/(Math.Sqrt(tiempo.Length));
 
             return IntervalosConfianza;
 
