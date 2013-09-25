@@ -9,14 +9,16 @@ namespace Igualacion
 {
     class IntervalosConfianza
     {
-        static private int  NumeroRondaMax = 50;
+        static private int  NumeroRondaMax = 30;
+        static private int NumeroCoeficientes = 120000;
+
         public static int[] GeneraCoeficientes()
         {
-            int[] coeficientes = new int[30000];
+            int[] coeficientes = new int[NumeroCoeficientes];
             int a, b, c, a1, b1, c1;
             Random ran = new Random();
 
-            for (int i = 0; i < coeficientes.Count() / 6; i++)
+            for (int i = 0; i < NumeroCoeficientes / 6; i++)
             {
 
                 a = (i * 6);
@@ -49,15 +51,21 @@ namespace Igualacion
                 for (int NumeroRonda = 0; NumeroRonda < NumeroRondaMax; NumeroRonda++)
                 {
                     sw.Restart();
-                    for (int i = 0; i < coeficientes.Count() / 6; i++)
+                    for (int i = 0; i < (NumeroCoeficientes/ NumeroRondaMax) * NumeroRonda; i++)
                     {
+                        //int a = (i * 6);
+                        //int b = (i * 6) + 1;
+                        //int c = (i * 6) + 2;
+                        //int a1 = (i * 6) + 3;
+                        //int b1 = (i * 6) + 4;
+                        //int c1 = (i * 6) + 5;
 
-                        int a = (i * 6);
-                        int b = (i * 6) + 1;
-                        int c = (i * 6) + 2;
-                        int a1 = (i * 6) + 3;
-                        int b1 = (i * 6) + 4;
-                        int c1 = (i * 6) + 5;
+                        int a = i;
+                        int b = i++;
+                        int c = i++;
+                        int a1 = i++;
+                        int b1 = i++;
+                        int c1 = i++;
 
                         Igualacion igualacion = new Igualacion(coeficientes[a], coeficientes[b], coeficientes[c],
                             coeficientes[a1], coeficientes[b1], coeficientes[c1]);
@@ -87,15 +95,15 @@ namespace Igualacion
                 for (int NumeroRonda = 0; NumeroRonda < NumeroRondaMax; NumeroRonda++)
                 {
                     sw.Restart();
-                    for (int i = 0; i < coeficientes.Count() / 6; i++)
+                    for (int i = 0; i < (NumeroCoeficientes / NumeroRondaMax) * NumeroRonda; i++)
                     {
 
-                        int a = (i * 6);
-                        int b = (i * 6) + 1;
-                        int c = (i * 6) + 2;
-                        int a1 = (i * 6) + 3;
-                        int b1 = (i * 6) + 4;
-                        int c1 = (i * 6) + 5;
+                        int a = i;
+                        int b = i++;
+                        int c = i++;
+                        int a1 = i++;
+                        int b1 = i++;
+                        int c1 = i++;
 
                         Cramer.Resolucion2x2(coeficientes[a], coeficientes[b], coeficientes[c],
                             coeficientes[a1], coeficientes[b1], coeficientes[c1]);
@@ -121,18 +129,17 @@ namespace Igualacion
                 for (int NumeroRonda = 0; NumeroRonda < NumeroRondaMax; NumeroRonda++)
                 {
                     sw.Restart();
-                    for (int i = 0; i < coeficientes.Count()/6 ; i++)
+                    for (int i = 0; i < (NumeroCoeficientes / NumeroRondaMax) * NumeroRonda; i++)
                     {
+                        int a = i;
+                        int b = i++;
+                        int c = i++;
+                        int a1 = i++;
+                        int b1 = i++;
+                        int c1 = i++;
 
-                        int a = coeficientes[(i * 6)];
-                        int b = coeficientes[(i * 6) + 1];
-                        int c = coeficientes[(i * 6) + 2];
-                        int a1 = coeficientes[(i * 6) + 3];
-                        int b1 = coeficientes[(i * 6) + 4];
-                        int c1 = coeficientes[(i * 6) + 5];
-
-
-                        Sustitucion.Sustitucion2x2(a, b, c, a1, b1, c1); ;
+                        Sustitucion.Sustitucion2x2(coeficientes[a], coeficientes[b], coeficientes[c],
+                            coeficientes[a1], coeficientes[b1], coeficientes[c1]);
                     }
                     sw.Stop();
                     tiempo[NumeroRonda] = sw.ElapsedMilliseconds;
@@ -143,7 +150,7 @@ namespace Igualacion
 
             return tiempo;
         }
-
+            
         /// <summary>
         ///El intervalo se encuentra en esa parte con una confianza de 95% 
         /// </summary>
